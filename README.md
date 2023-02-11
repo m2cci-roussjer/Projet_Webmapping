@@ -37,6 +37,12 @@ Peut-on affirmer que l’artificialisation des sols en France est 4 fois plus ra
 5. `git merge devel` sur la branche **MASTER**
 6. `git push` et saisir ses identifiants
 
+### Ajouter une nouvelle branche
+1. Se connecter à la branche **MASTER** avec `git checkout master`
+2. `git pull` et saisir ses identifiants
+3. `git checkout -b [nomDeLaNouvelleBranche]` pour créer une nouvelle branche identique à **MASTER**
+4. `git push --set-upstream origin [nomDeLaNouvelleBranche]` pour l'ajouter sur GitHub
+
 ### Consigne
   Vous serez évalués sur vos capacités à traiter une problématique d’analyse spatiale, le rendu devant se faire sur la forme de pages web (méthodologie + analyse + commentaire) avec cartographie interactive et graphiques. Donc, à la fois, votre maitrise technique (html + css + openlayers) et votre capacité à traiter des jeux de données, les analyser et en tirer une analyse spatiale.
 
