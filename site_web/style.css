@@ -1,12 +1,42 @@
 @import "node_modules/ol/ol.css";
 
-html, body {
-  margin: 0;
+.navbar-brand{
+  padding-left : 20px;
+}
+
+html,
+body {
+  margin-top: auto;
   height: 100%;
 }
+
+h1{
+  color: #28a745;
+}
+
+.cligno_color{
+  animation: 8s infinite change_couleur;
+}
+@keyframes change_couleur {
+10%   {color: red;}
+25%  {color: orange;}
+50%  {color: yellow;}
+}
+
+.container{
+  margin-top: 60px;
+}
+
 #map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
+  width: 600px;
+  height: 500px;
+  border: 1px solid #28a745;
+  margin:10px;
+ }
+
+ p.footer {
+	text-align : center;
+}
+hr{
+  color: #28a745;
 }
