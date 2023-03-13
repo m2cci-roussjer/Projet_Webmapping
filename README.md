@@ -4,7 +4,7 @@
 - Jérémy ROUSSEAU
 
 **Problématique :**
-Peut-on affirmer que l’artificialisation des sols en France est 4 fois plus rapide que l’augmentation de la population ?
+Peut-on affirmer que l’artificialisation des sols en France est 4 fois plus rapide que l’augmentation de la population entre 2006 et 2012 ?
 
 ### Initialiser le dépot Git
 1. Se connecter à la VM Ubuntu Dev
