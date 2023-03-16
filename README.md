@@ -4,7 +4,7 @@
 - Jérémy ROUSSEAU
 
 **Problématique :**
-Peut-on affirmer que l’artificialisation des sols en France est 4 fois plus rapide que l’augmentation de la population entre 2006 et 2012 ?
+Peut-on affirmer que l’artificialisation des sols dans les départements du Rhône et de l'Isère est 4 fois plus rapide que l’augmentation de leur population entre 2006 et 2012 ?
 
 ### Initialiser le dépot Git
 1. Se connecter à la VM Ubuntu Dev
