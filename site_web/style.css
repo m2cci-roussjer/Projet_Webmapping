@@ -37,6 +37,7 @@ h1{
 p,li {
   font-size: 17px;
   text-align: justify;
+  margin:2px;
 } 
 
 p.footer {
