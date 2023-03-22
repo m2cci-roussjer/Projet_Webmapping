@@ -10,8 +10,8 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
-    "@esri/arcgis-rest-request": "^4.1.2",
     "ol": "latest",
+    "ol-ext": "^4.0.6",
     "ol-layerswitcher": "^4.1.1",
     "ol-popup": "^5.0.0"
   }

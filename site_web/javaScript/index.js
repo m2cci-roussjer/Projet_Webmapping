@@ -11,6 +11,13 @@ import { fromLonLat } from 'ol/proj';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import Popup from 'ol-popup';
 
+// import Legend from 'ol-ext/legend/Legend';
+// import CtrLegend from 'ol-ext/control/Legend';
+// import LayerSwitcher from 'ol-layerswitcher';
+
+
+// TO DO : rajouter légende pour les deux cartes
+
 // Créer la couche du fond de carte OpenStreetMap
 const osmLayer = new TileLayer({
   title: 'OpenStreetMap',
@@ -169,6 +176,17 @@ map2.on('pointermove', function(evt) {
       }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
