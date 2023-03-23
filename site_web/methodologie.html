@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
   <title>Méthodologie</title>
 </head>
 
@@ -39,27 +40,60 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="cligno_color">La Méthodologie !</h1>
-        <p>Intro + on fait ça sur QGIS</p>
+        <p>Après avoir récupéré les données indispensables pour répondre à notre problématique, nous allons maintenant
+          passer sur le logiciel QGIS pour les traitements. Les étapes seront détaillées et seront accompagnées de
+          commentaires pour mettre en avant les difficultés rencontrées et les décisions prisent.</p>
       </div>
     </div>
     <div class="row">
-      <h4>Titre</h4>
+      <h4>Étape par étape</h4>
+      <h5>1. Jointure entre les données INSEE et la couche des communes</h5>
       <p>
-        Présentation de la méthodo (étape par étape) cf: Doc sur Drive
-        Utilise de node server ? avec OpenLayers (listé les librairie ajoutés en plus ?)
-        dire qu'on a pas réussi à mettre layerswitcher et légende
+        Grâce au code INSEE, nous avons mis en place une jointure entre l’historique des populations communales et la
+        couche des communes préalablement filtrés sur les départements du Rhône et de l’Isère via le code
+        département.<br>
+        Ainsi, nous récupérons la population en 2006 et 2012 pour chaque commune.
+        Pour calculer les surfaces plus facilement, nous reprojetons la couche pour passer de WGS84 (degrés) à Lambert
+        93 (mètres). Enfin, nous agrégeons via le code département les communes pour obtenir la couche des départements
+        et leurs populations en 2006 et 2012 (Fonction d’agrégation : somme des champs de population).
       </p>
-    </div>
-    <div class="row">
-      <div class="col-md-5 clearfix d-md-block">
-        <h4>Titre</h4>
-        <p> 
-          Les premiers résultats  avec à droite la carte zone artificialisé 06 et 12 qui se chevauche + popup + légende dans texte
-        </p>
-      </div>
-      <div class="col-md-7">
-        <div id="map"></div>
-      </div>
+      <h5>2. Titre</h5>
+      <p>
+        Découper CLC 2006 et 2012 par départment (*4)
+        Dans la classification CLC, l'artificialisation des sols est représentée par des classes d'utilisation du sol telles que "territoires artificialisés", "infrastructures de transport" ou "zones industrielles et commerciales". → tout ce qui commence par 1 (voir documentation CLC)
+        Création d’un champ calculé pour détecter les 5 grands postes d’occupation du sol et ne garder que les
+        territoires artificialisés (1) et les autres (2,3,4,5)
+        Type_occupation
+        Texte
+        if( substr("CODE_06",1,1)='1','Territoires artificialisés','Autres')
+        Agrégation Type_occupation
+        On calcule la surface en km²
+        Surface_km2
+        Réel
+        round($AREA/1000,2)
+
+      </p>
+      <h5>3. Titre</h5>
+      <p>
+        On calcule le taux d’évolution en pourcentage de la population par département
+        Tx_EVOL_06_12
+        Réel
+        round((( "PMUN12" - "PMUN06" )/ "PMUN06" )*100,2)
+        Pour les surface artificialisé on le fait manuellement
+      </p>
+      <h5>4. Titre</h5>
+      <p>
+        Utilise de node server ? avec OpenLayers (listé les librairie ajoutés en plus ?)
+        dire qu'on a pas réussi à mettre layerswitcher et légende (laisser un exemple)
+        Commenter
+        Mettre en 3857 les GEOJSON avant de les mettre dans OpenLayer
+
+        VOIR legende, layerSwitcher et WFS pour CLC
+        parler des librairies à importer (ol-popup)
+        git merge + issues + page github
+        si pas possible légende : mettre titre et légende en dure !
+
+      </p>
     </div>
   </div>
 
@@ -74,7 +108,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
-  <script type="module" src="./javaScript/index.js"></script>
 </body>
 
 </html>
