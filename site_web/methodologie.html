@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="./images/Ukraine.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>Méthodologie</title>
+</head>
+
+<body>
+  <!-- Barre de navigation -->
+  <nav class="navbar navbar-expand-md bg-success navbar-dark fixed-top">
+    <div class="container-fluid">
+      <span class="navbar-brand"> Projet Webmapping </span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link " href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Méthodologie</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analyse.html">Analyse</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenu -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="cligno_color">La Méthodologie !</h1>
+        <p>Après avoir récupéré les données indispensables pour répondre à notre problématique, nous allons maintenant
+          passer sur le logiciel QGIS pour les traitements. Les étapes seront détaillées et seront accompagnées de
+          commentaires pour mettre en avant les difficultés rencontrées et les décisions prisent.</p>
+      </div>
+    </div>
+    <div class="row">
+      <h4>Étape par étape</h4>
+      <h5>1. Jointure entre les données INSEE et la couche des communes</h5>
+      <p>
+        Grâce au code INSEE, nous avons mis en place une jointure entre l’historique des populations communales et la
+        couche des communes préalablement filtrés sur les départements du Rhône et de l’Isère via le code
+        département.<br>
+        Ainsi, nous récupérons la population en 2006 et 2012 pour chaque commune.
+        Pour calculer les surfaces plus facilement, nous reprojetons la couche pour passer de WGS84 (degrés) à Lambert
+        93 (mètres). Enfin, nous agrégeons via le code département les communes pour obtenir la couche des départements
+        et leurs populations en 2006 et 2012 (Fonction d’agrégation : somme des champs de population).
+      </p>
+      <h5>2. Calculer la surface occupée par les territoires artificialisés</h5>
+      <p>
+        Grâce à la couche des départements, nous découpons les couches de Corine Land Cover 2006 / 2012 pour ne garder
+        que nos zones d’études.<br>
+        Dans la classification de CLC, l'artificialisation des sols est représentée par des classes d'utilisation du sol
+        telles que "territoires artificialisés", "infrastructures de transport" ou "zones industrielles et commerciales"
+        et sont caractérisé par un code qui commence par 1. Ainsi, nous allons créer un champ calculé permettant de
+        mettre en avant les territoires artificialisés des autres postes d’occupation du sol.<br>
+        👉 Exemple de syntaxe pour la couche CLC 2006 :
+        <code>if( substr("CODE_06",1,1)='1','Territoires artificialisés','Autres')</code><br>
+        Ensuite, il nous suffit d’agréger les couches de CLC par le champ calculé obtenu et de calculer la surface en
+        km² des territoires artificialisés.
+      </p>
+      <h5>3. Calculer le taux d’évolution en pourcentage de la population par département</h5>
+      <p>
+        Nous nous servons encore une fois des champs calculés pour obtenir ce taux.<br>
+        👉 Exemple de syntaxe : <code>round((( "PMUN12" - "PMUN06" )/ "PMUN06" )*100,2)</code><br>
+        Pour celui des surfaces artificialisées, on le fait manuellement.
+      </p>
+      <h5>4. Création des pages web</h5>
+      <p>
+        Nous utilisons NPM (Node Package Manager), un gestionnaire de paquets pour nous aider dans la conception de
+        notre site web. Ce gestionnaire est utilisé pour installer,
+        gérer et partager des bibliothèques et des modules de code JavaScript avec d'autres développeurs.
+        Ainsi, pour créer nos cartes interactives (projeter en EPSG : 3857), nous nous basons sur la bibliothèque
+        OpenLayers et ses modules complémentaires "ol-popup", "ol-ext", et "ol-layerswitcher".
+        Les deux derniers modules permettent d’ajouter des légendes et des contrôleurs de couches que nous n’avons
+        malheureusement pas réussi à implémenter. Pour le graphique, on utilise le module "chart.js".
+
+      </p>
+    </div>
+  </div>
+
+  <hr />
+  <p class="footer"><a href="mailto:Gad-Eliezer.NDa@etu.univ-grenoble-alpes.fr">Gad-Eliezer N'DA</a> - <a
+      href="mailto:jeremy.rousseau1@etu.univ-grenoble-alpes.fr">Jérémy ROUSSEAU</a> M2 GEOMAS 2022/2023 © <a
+      href="https://validator.w3.org/" target="_blank"><img src="./images/valid_html5.png" alt="valid_html5"></a></p>
+
+  <!-- Script JavaScript-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

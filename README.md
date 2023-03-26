@@ -4,7 +4,7 @@
 - Jérémy ROUSSEAU
 
 **Problématique :**
-Peut-on affirmer que l’artificialisation des sols en France est 4 fois plus rapide que l’augmentation de la population ?
+Peut-on affirmer que l’artificialisation des sols dans les départements du Rhône et de l'Isère est 4 fois plus rapide que l’augmentation de leur population entre 2006 et 2012 ?
 
 ### Initialiser le dépot Git
 1. Se connecter à la VM Ubuntu Dev
@@ -12,14 +12,15 @@ Peut-on affirmer que l’artificialisation des sols en France est 4 fois plus ra
 3. `git clone https://github.com/m2cci-roussjer/Projet_Webmapping.git`
 4. Saisir son pseudo (ex: m2cci-roussjer)
 5. Saisir sa clé personnel (voir sur Github : Developer settings/Personal access tokens (classic))
-6. Pour vérifier : `git remote -v`
-7. `git config user.name "[pseudo GitHub]"`
-8. `git config user.email "[email compte GitHub]"` pour vérifier les changements `git config --list`
+6. Pour récupérer toutes les branches du répertoire : `git fetch --all`
+7. Pour vérifier : `git remote -v`
+8. `git config user.name "[pseudo GitHub]"`
+9. `git config user.email "[email compte GitHub]"` pour vérifier les changements `git config --list`
 
 
 ### Faire des changements (à faire à chaque fin de séance de travail)
 1. Vérifier la branche avec `git status`, on ne travaille pas directement sur la branche **MASTER** mais sur **DEVEL**
-2. Pour changer de branche : `git branch [nom]`
+2. Pour changer de branche : `git checkout [nom]`
 3. `git pull` et saisir ses identifiants
 4. `git add [fichier]` pour ajouter les fichiers modifiés
 5. `git commit -m "[Mon message explicite]"`, il faut mettre un message explicite !!
