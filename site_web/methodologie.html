@@ -57,41 +57,34 @@
         93 (mètres). Enfin, nous agrégeons via le code département les communes pour obtenir la couche des départements
         et leurs populations en 2006 et 2012 (Fonction d’agrégation : somme des champs de population).
       </p>
-      <h5>2. Titre</h5>
+      <h5>2. Calculer la surface occupée par les territoires artificialisés</h5>
       <p>
-        Découper CLC 2006 et 2012 par départment (*4)
-        Dans la classification CLC, l'artificialisation des sols est représentée par des classes d'utilisation du sol telles que "territoires artificialisés", "infrastructures de transport" ou "zones industrielles et commerciales". → tout ce qui commence par 1 (voir documentation CLC)
-        Création d’un champ calculé pour détecter les 5 grands postes d’occupation du sol et ne garder que les
-        territoires artificialisés (1) et les autres (2,3,4,5)
-        Type_occupation
-        Texte
-        if( substr("CODE_06",1,1)='1','Territoires artificialisés','Autres')
-        Agrégation Type_occupation
-        On calcule la surface en km²
-        Surface_km2
-        Réel
-        round($AREA/1000,2)
-
+        Grâce à la couche des départements, nous découpons les couches de Corine Land Cover 2006 / 2012 pour ne garder
+        que nos zones d’études.<br>
+        Dans la classification de CLC, l'artificialisation des sols est représentée par des classes d'utilisation du sol
+        telles que "territoires artificialisés", "infrastructures de transport" ou "zones industrielles et commerciales"
+        et sont caractérisé par un code qui commence par 1. Ainsi, nous allons créer un champ calculé permettant de
+        mettre en avant les territoires artificialisés des autres postes d’occupation du sol.<br>
+        👉 Exemple de syntaxe pour la couche CLC 2006 :
+        <code>if( substr("CODE_06",1,1)='1','Territoires artificialisés','Autres')</code><br>
+        Ensuite, il nous suffit d’agréger les couches de CLC par le champ calculé obtenu et de calculer la surface en
+        km² des territoires artificialisés.
       </p>
-      <h5>3. Titre</h5>
+      <h5>3. Calculer le taux d’évolution en pourcentage de la population par département</h5>
       <p>
-        On calcule le taux d’évolution en pourcentage de la population par département
-        Tx_EVOL_06_12
-        Réel
-        round((( "PMUN12" - "PMUN06" )/ "PMUN06" )*100,2)
-        Pour les surface artificialisé on le fait manuellement
+        Nous nous servons encore une fois des champs calculés pour obtenir ce taux.<br>
+        👉 Exemple de syntaxe : <code>round((( "PMUN12" - "PMUN06" )/ "PMUN06" )*100,2)</code><br>
+        Pour celui des surfaces artificialisées, on le fait manuellement.
       </p>
-      <h5>4. Titre</h5>
+      <h5>4. Création des pages web</h5>
       <p>
-        Utilise de node server ? avec OpenLayers (listé les librairie ajoutés en plus ?)
-        dire qu'on a pas réussi à mettre layerswitcher et légende (laisser un exemple)
-        Commenter
-        Mettre en 3857 les GEOJSON avant de les mettre dans OpenLayer
-
-        VOIR legende, layerSwitcher et WFS pour CLC
-        parler des librairies à importer (ol-popup)
-        git merge + issues + page github
-        si pas possible légende : mettre titre et légende en dure !
+        Nous utilisons NPM (Node Package Manager), un gestionnaire de paquets pour nous aider dans la conception de
+        notre site web. Ce gestionnaire est utilisé pour installer,
+        gérer et partager des bibliothèques et des modules de code JavaScript avec d'autres développeurs.
+        Ainsi, pour créer nos cartes interactives (projeter en EPSG : 3857), nous nous basons sur la bibliothèque
+        OpenLayers et ses modules complémentaires "ol-popup", "ol-ext", et "ol-layerswitcher".
+        Les deux derniers modules permettent d’ajouter des légendes et des contrôleurs de couches que nous n’avons
+        malheureusement pas réussi à implémenter. Pour le graphique, on utilise le module "chart.js".
 
       </p>
     </div>
@@ -100,9 +93,7 @@
   <hr />
   <p class="footer"><a href="mailto:Gad-Eliezer.NDa@etu.univ-grenoble-alpes.fr">Gad-Eliezer N'DA</a> - <a
       href="mailto:jeremy.rousseau1@etu.univ-grenoble-alpes.fr">Jérémy ROUSSEAU</a> M2 GEOMAS 2022/2023 © <a
-      href="https://validator.w3.org/" target="_blank"><img src="./images/valid_html5.png" alt="valid_html5"> <img
-        src="./images/valid_css3.png" alt="valid_css3"></a></p>
-  </div>
+      href="https://validator.w3.org/" target="_blank"><img src="./images/valid_html5.png" alt="valid_html5"></a></p>
 
   <!-- Script JavaScript-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

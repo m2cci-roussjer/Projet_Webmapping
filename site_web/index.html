@@ -43,23 +43,48 @@
         <p>Dans le cadre de notre formation au sein du <a class="link-primary"
             href="https://formations.univ-grenoble-alpes.fr/fr/catalogue-2021/master-XB/master-geographie-amenagement-environnement-developpement-IAQKVMLV/parcours-geomatique-et-analyse-spatiale-geomas-IBKOZ6NC.html">Master
             GEOMAS</a>, il nous est demandé de concevoir un site web répondant à une problématique d’analyse spatiale.
-          Le rendu doit se faire sous la forme de pages web répondant aux différents aspects suivant méthodologie,
+          Le rendu doit se faire sous la forme de pages web répondant aux différents aspects suivant : méthodologie,
           analyse et commentaire, avec des cartographies interactives <a class="link-primary"
             href="https://openlayers.org/">OpenLayers</a> et des graphiques.</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-7" style="overflow: hidden;">
+        <div>
+          <h5 class="TitreCarte">Commune du département de l'Isère</h5>
+          <p class="Legende">Population en 2012</p>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #fee5d9;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 3 283 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #fcae91;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 9 944 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #fb6a4a;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 22 050 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #de2d26;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 38 105 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #a50f15;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 15 8346 habitants</p>
+          </div>
+        </div>
         <div id="map"></div>
       </div>
       <div class="col-md-5 clearfix d-md-block">
         <h4>Peut-on affirmer que l’artificialisation des sols dans les départements du Rhône et de l'Isère est 4 fois
           plus rapide que l’augmentation de leur population entre 2006 et 2012 ?</h4>
-        <p>Tout d’abord, nous allons définir la notion d'<strong>artificialisation des sols</strong>. Il s’agit d’un <strong>
-          processus de
+        <p>Tout d’abord, nous allons définir la notion d'<strong>artificialisation des sols</strong>. Il s’agit d’un
+          <strong>
+            processus de
             conversion de terres naturelles, agricoles, forestières ou autres en zones urbanisées, industrielles,
-            commerciales ou de transport
-        </strong>. En d'autres termes, l'artificialisation des sols se produit lorsque des terres
+            commerciales ou de transport</strong>. En d'autres termes, l'artificialisation des sols se produit lorsque
+          des terres
           naturelles sont transformées en zones construites.<br>
           Par conséquence, cela entraîne souvent la perte de la biodiversité et des habitats naturels, ainsi que des
           problèmes environnementaux tels que l'augmentation de la température urbaine, l'augmentation des
@@ -68,23 +93,26 @@
           ainsi que pour la capacité de la planète à soutenir la vie à long terme.<br>
           Nous avons sélectionné les départements de l’Isère et du Rhône pour éviter d’avoir une zone d’étude trop
           petite et déjà largement artificialisée, et donc qui biaise notre analyse en aval. Pour les périodes
-          concernées, nous nous sommes basées sur les années disponibles pour toutes nos données.</p>
+          concernées, nous nous sommes basées sur les années disponibles pour toutes nos données.
+        </p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-5 clearfix d-md-block">
         <h4>Les données utilisées pour y répondre.</h4>
-        <p> Nous avons récupéré trois principaux jeux de données sous licence libre : <br>
+        <p> Nous avons récupéré trois principaux jeux de données sous licence libre : <br></p>
         <ul>
-          <li>Le <strong>découpage administratif communal</strong> français issu d'OpenStreetMap disponible sur le site <a
+          <li>Le <strong>découpage administratif communal</strong> français issu d'OpenStreetMap disponible sur le site
+            <a
               href="https://www.data.gouv.fr/fr/datasets/decoupage-administratif-communal-francais-issu-d-openstreetmap/#/informations">data.gouv.fr</a>
             (consulté le 21/03/2023).
-            <br> Ce fichier contient l'ensemble des communes françaises au format shapefile et en projection WGS84. Les
+            <br> Ce fichier contient l'ensemble des communes françaises au format shapefile et en projection WGS84. Ces
             données proviennent de la base de données cartographiques OpenStreetMap et ont été constituées à partir du
             cadastre mis à disposition par la DGFiP.
           </li>
           <li>
-            <strong>Historique des populations communales</strong> (Recensements de la population 1876-2020) disponible sur le site web
+            <strong>Historique des populations communales</strong> (Recensements de la population 1876-2020) disponible
+            sur le site web
             de <a href="https://www.insee.fr/fr/statistiques/3698339#consulter">l’INSEE</a> (consulté le
             21/03/2023) dans un format EXCEL.<br>
             Les résultats des recensements depuis 2006 ne se comparent correctement entre eux que sur des périodes
@@ -94,17 +122,44 @@
           </li>
           <li>
             La <strong>base de données géographiques CORINE Land Cover</strong> disponible sur le site web
-            <a href="https://www.statistiques.developpement-durable.gouv.fr/corine-land-cover-0">statistiques.developpement-durable.gouv.fr</a> (consulté le 21/03/2023).<br>
+            <a
+              href="https://www.statistiques.developpement-durable.gouv.fr/corine-land-cover-0">statistiques.developpement-durable.gouv.fr</a>
+            (consulté le 21/03/2023).<br>
             Cet inventaire biophysique de l’occupation des terres fournit une photographie complète de l’occupation des
             sols, à des fréquences régulières. Il comprend 44 postes répartis selon 5 grands types d'occupation du
             territoire, dont les territoires artificialisés, territoires agricoles, zones humides…<br>
-            Accessible pour les années suivantes : 1990, 2000, 2006, 2012 et 2018, nous nous intéressons  seulement aux
-            années 2006 et 2012 ainsi qu’au type d'occupation des territoires artificialisés. Les fichiers sont au format shapefile.
+            Accessible pour les années suivantes : 1990, 2000, 2006, 2012 et 2018, nous nous intéressons seulement aux
+            années 2006 et 2012 ainsi qu’au type d'occupation des territoires artificialisés. Les fichiers sont au
+            format shapefile.
           </li>
         </ul>
-        </p>
+
       </div>
-      <div class="col-md-7">
+      <div class="col-md-7" style="overflow: hidden;">
+        <div>
+          <h5 class="TitreCarte">Commune du département du Rhône</h5>
+          <p class="Legende">Population en 2012</p>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #fee5d9;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 4 123 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #fcae91;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 13 599 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #fb6a4a;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 31 493 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #de2d26;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 146 282 habitants</p>
+          </div>
+          <div class="ligneLegende">
+            <div class="itemLegende squareLegende" style="background-color: #a50f15;"></div>
+            <p class="itemLegende">&nbsp;&lt; ou = à 496 343 habitants</p>
+          </div>
+        </div>
         <div id="map2"></div>
       </div>
     </div>
@@ -113,9 +168,7 @@
   <hr />
   <p class="footer"><a href="mailto:Gad-Eliezer.NDa@etu.univ-grenoble-alpes.fr">Gad-Eliezer N'DA</a> - <a
       href="mailto:jeremy.rousseau1@etu.univ-grenoble-alpes.fr">Jérémy ROUSSEAU</a> M2 GEOMAS 2022/2023 © <a
-      href="https://validator.w3.org/" target="_blank"><img src="./images/valid_html5.png" alt="valid_html5"> <img
-        src="./images/valid_css3.png" alt="valid_css3"></a></p>
-  </div>
+      href="https://validator.w3.org/" target="_blank"><img src="./images/valid_html5.png" alt="valid_html5"></a></p>
 
   <!-- Script JavaScript-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

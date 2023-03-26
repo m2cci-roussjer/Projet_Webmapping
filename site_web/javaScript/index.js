@@ -11,12 +11,11 @@ import { fromLonLat } from 'ol/proj';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import Popup from 'ol-popup';
 
+
 // import Legend from 'ol-ext/legend/Legend';
 // import CtrLegend from 'ol-ext/control/Legend';
 // import LayerSwitcher from 'ol-layerswitcher';
 
-
-// TO DO : rajouter légende pour les deux cartes
 
 // Créer la couche du fond de carte OpenStreetMap
 const osmLayer = new TileLayer({
@@ -33,7 +32,7 @@ const osmLayer2 = new TileLayer({
 });
 
 // Créer la couche de style commune Isère
-const styleComIsère = function(feature) {
+const styleComIsère = function (feature) {
   const pm12 = feature.get('PMUN12');
   let color = '';
   if (pm12 <= 3283) {
@@ -66,7 +65,7 @@ const comIsereLayer = new VectorLayer({
     url: '../data/COMMUNE_Isere.geojson',
     format: new GeoJSON()
   }),
-  style: styleComIsère ,
+  style: styleComIsère,
   title: 'Commune en Isère',
   visible: true
 });
@@ -80,7 +79,7 @@ const map = new Map({
   ],
   view: new View({
     center: fromLonLat([5.73, 45.18]),
-    zoom: 10
+    zoom: 9
   }),
 });
 
@@ -88,14 +87,14 @@ const map = new Map({
 const popup = new Popup();
 map.addOverlay(popup);
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', function (evt) {
   map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
     let nom = feature.get('nom');
     let PMUN12 = feature.get('PMUN12');
     let PMUN06 = feature.get('PMUN06');
     let Superficie = feature.get('Surface_km2');
 
-    popup.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>'+PMUN12+'<br><h8>Population en 2006 : </h8>'+PMUN06+'<br><h8>Superficie en km² : </h8>'+Superficie);
+    popup.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>' + PMUN12 + '<br><h8>Population en 2006 : </h8>' + PMUN06 + '<br><h8>Superficie en km² : </h8>' + Superficie);
   }, // Dictionnary of options
     {
       layerFilter: function (layerCandidate) {
@@ -106,7 +105,7 @@ map.on('pointermove', function(evt) {
 
 //-------------------------------------------
 // Créer la couche de style commune Rhone
-const styleComRhone = function(feature) {
+const styleComRhone = function (feature) {
   const pm12 = feature.get('PMUN12');
   let color = '';
   if (pm12 <= 4123) {
@@ -139,7 +138,7 @@ const comRhoneLayer = new VectorLayer({
     url: '../data/COMMUNE_Rhone.geojson',
     format: new GeoJSON()
   }),
-  style: styleComRhone ,
+  style: styleComRhone,
   title: 'Commune dans le Rhône',
   visible: true
 });
@@ -153,7 +152,7 @@ const map2 = new Map({
   ],
   view: new View({
     center: fromLonLat([4.82, 45.75]),
-    zoom: 11
+    zoom: 9
   }),
 });
 
@@ -161,14 +160,14 @@ const map2 = new Map({
 const popup2 = new Popup();
 map2.addOverlay(popup2);
 
-map2.on('pointermove', function(evt) {
+map2.on('pointermove', function (evt) {
   map2.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
     let nom = feature.get('nom');
     let PMUN12 = feature.get('PMUN12');
     let PMUN06 = feature.get('PMUN06');
     let Superficie = feature.get('Surface_km2');
 
-    popup2.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>'+PMUN12+'<br><h8>Population en 2006 : </h8>'+PMUN06+'<br><h8>Superficie en km² : </h8>'+Superficie);
+    popup2.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>' + PMUN12 + '<br><h8>Population en 2006 : </h8>' + PMUN06 + '<br><h8>Superficie en km² : </h8>' + Superficie);
   }, // Dictionnary of options
     {
       layerFilter: function (layerCandidate) {
@@ -176,6 +175,34 @@ map2.on('pointermove', function(evt) {
       }
     });
 });
+
+////////////////////////////////:
+
+// Créer le LayerSwitcher
+
+// const layerSwitcher = new LayerSwitcher({
+//   reverse: true,
+//   groupSelectStyle: 'group',
+// });
+
+// Ajouter le LayerSwitcher à la carte
+
+// map.addControl(layerSwitcher);
+
+// Créer la légende identique pour les deux cartes
+// const legend = new Legend({
+//   title: 'Légende',
+//   style: 'card',
+//   collapsible: true,
+//   layers: [comIsereLayer, comRhoneLayer]
+// });
+
+// const ctrLegend = new CtrLegend({
+//   legend: legend
+// });
+
+// map.addControl(ctrLegend);
+// map2.addControl(ctrLegend);
 
 
 
