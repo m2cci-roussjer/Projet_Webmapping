@@ -6,6 +6,14 @@
 **Problématique :**
 Peut-on affirmer que l’artificialisation des sols dans les départements du Rhône et de l'Isère est 4 fois plus rapide que l’augmentation de leur population entre 2006 et 2012 ?
 
+### Bibliothèque et module
+Pour la conception de ce site web, nous avons utilisé :
+- les modules par défaut ajoutés par la commande `npm create ol-app`
+- `ol-popup`
+- `ol-ext` pour les légendes
+- `ol-layerswitcher`
+- `chart.js` pour les graphiques
+
 ### Initialiser le dépot Git
 1. Se connecter à la VM Ubuntu Dev
 2. Ouvrir un terminal dans le dossier Document

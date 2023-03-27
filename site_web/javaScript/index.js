@@ -95,7 +95,7 @@ map.on('pointermove', function (evt) {
     let Superficie = feature.get('Surface_km2');
 
     popup.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>' + PMUN12 + '<br><h8>Population en 2006 : </h8>' + PMUN06 + '<br><h8>Superficie en km² : </h8>' + Superficie);
-  }, // Dictionnary of options
+  }, 
     {
       layerFilter: function (layerCandidate) {
         return layerCandidate.get('title') == 'Commune en Isère'
@@ -168,7 +168,7 @@ map2.on('pointermove', function (evt) {
     let Superficie = feature.get('Surface_km2');
 
     popup2.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>' + PMUN12 + '<br><h8>Population en 2006 : </h8>' + PMUN06 + '<br><h8>Superficie en km² : </h8>' + Superficie);
-  }, // Dictionnary of options
+  }, 
     {
       layerFilter: function (layerCandidate) {
         return layerCandidate.get('title') == 'Commune dans le Rhône'
