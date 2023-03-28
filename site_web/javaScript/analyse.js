@@ -10,17 +10,18 @@ import VectorSource from 'ol/source/Vector';
 import { fromLonLat } from 'ol/proj';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 
-// import LayerSwitcher from 'ol-layerswitcher';
+import LayerSwitcher from 'ol-layerswitcher';
+import 'ol-layerswitcher/dist/ol-layerswitcher.css'
 
-// Créer la couche du fond de carte OpenStreetMap
+// Créer la couche des fonds de carte
 const osmLayer = new TileLayer({
-    title: 'OpenStreetMap',
     type: 'base',
     visible: true,
     source: new OSM()
 });
+
+
 const osmLayer2 = new TileLayer({
-    title: 'OpenStreetMap',
     type: 'base',
     visible: true,
     source: new OSM()
@@ -67,6 +68,7 @@ const styleArtif12 = function (feature) {
 
 // Créer la couche
 const CL06_Isere_layer = new VectorLayer({
+    title: 'Territoires artificialisés en 2006',
     source: new VectorSource({
         url: '../data/CL06_Isere_artificial.geojson',
         format: new GeoJSON()
@@ -76,6 +78,7 @@ const CL06_Isere_layer = new VectorLayer({
 });
 
 const CL12_Isere_layer = new VectorLayer({
+    title: 'Territoires artificialisés en 2012',
     source: new VectorSource({
         url: '../data/CL12_Isere_artificial.geojson',
         format: new GeoJSON()
@@ -85,6 +88,7 @@ const CL12_Isere_layer = new VectorLayer({
 });
 
 const CL06_Rhone_layer = new VectorLayer({
+    title: 'Territoires artificialisés en 2006',
     source: new VectorSource({
         url: '../data/CL06_Rhone_artificial.geojson',
         format: new GeoJSON()
@@ -94,6 +98,7 @@ const CL06_Rhone_layer = new VectorLayer({
 });
 
 const CL12_Rhone_layer = new VectorLayer({
+    title: 'Territoires artificialisés en 2012',
     source: new VectorSource({
         url: '../data/CL12_Rhone_artificial.geojson',
         format: new GeoJSON()
@@ -133,11 +138,16 @@ const map4 = new Map({
 
 // // Créer le LayerSwitcher
 
-// const layerSwitcher = new LayerSwitcher({
-//   reverse: true,
-//   groupSelectStyle: 'group',
-// });
+const layerSwitcher = new LayerSwitcher({
+  reverse: true,
+  groupSelectStyle: 'group',
+});
+const layerSwitcher2 = new LayerSwitcher({
+    reverse: true,
+    groupSelectStyle: 'group',
+  });
 
 // // Ajouter le LayerSwitcher à la carte
 
-// map3.addControl(layerSwitcher);
+map3.addControl(layerSwitcher);
+map4.addControl(layerSwitcher2);

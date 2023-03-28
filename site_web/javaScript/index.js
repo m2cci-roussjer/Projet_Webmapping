@@ -11,11 +11,9 @@ import { fromLonLat } from 'ol/proj';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import Popup from 'ol-popup';
 
-
+// import 'ol-ext/dist/ol-ext.min.css'
 // import Legend from 'ol-ext/legend/Legend';
 // import CtrLegend from 'ol-ext/control/Legend';
-// import LayerSwitcher from 'ol-layerswitcher';
-
 
 // Créer la couche du fond de carte OpenStreetMap
 const osmLayer = new TileLayer({
@@ -95,7 +93,7 @@ map.on('pointermove', function (evt) {
     let Superficie = feature.get('Surface_km2');
 
     popup.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>' + PMUN12 + '<br><h8>Population en 2006 : </h8>' + PMUN06 + '<br><h8>Superficie en km² : </h8>' + Superficie);
-  }, // Dictionnary of options
+  }, 
     {
       layerFilter: function (layerCandidate) {
         return layerCandidate.get('title') == 'Commune en Isère'
@@ -168,52 +166,10 @@ map2.on('pointermove', function (evt) {
     let Superficie = feature.get('Surface_km2');
 
     popup2.show(evt.coordinate, '<h7><b>' + nom + '</b></h7> <br><h8>Population en 2012 : </h8>' + PMUN12 + '<br><h8>Population en 2006 : </h8>' + PMUN06 + '<br><h8>Superficie en km² : </h8>' + Superficie);
-  }, // Dictionnary of options
+  }, 
     {
       layerFilter: function (layerCandidate) {
         return layerCandidate.get('title') == 'Commune dans le Rhône'
       }
     });
 });
-
-////////////////////////////////:
-
-// Créer le LayerSwitcher
-
-// const layerSwitcher = new LayerSwitcher({
-//   reverse: true,
-//   groupSelectStyle: 'group',
-// });
-
-// Ajouter le LayerSwitcher à la carte
-
-// map.addControl(layerSwitcher);
-
-// Créer la légende identique pour les deux cartes
-// const legend = new Legend({
-//   title: 'Légende',
-//   style: 'card',
-//   collapsible: true,
-//   layers: [comIsereLayer, comRhoneLayer]
-// });
-
-// const ctrLegend = new CtrLegend({
-//   legend: legend
-// });
-
-// map.addControl(ctrLegend);
-// map2.addControl(ctrLegend);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
