@@ -11,11 +11,9 @@ import { fromLonLat } from 'ol/proj';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import Popup from 'ol-popup';
 
-
+// import 'ol-ext/dist/ol-ext.min.css'
 // import Legend from 'ol-ext/legend/Legend';
 // import CtrLegend from 'ol-ext/control/Legend';
-// import LayerSwitcher from 'ol-layerswitcher';
-
 
 // Créer la couche du fond de carte OpenStreetMap
 const osmLayer = new TileLayer({
@@ -175,45 +173,3 @@ map2.on('pointermove', function (evt) {
       }
     });
 });
-
-////////////////////////////////:
-
-// Créer le LayerSwitcher
-
-// const layerSwitcher = new LayerSwitcher({
-//   reverse: true,
-//   groupSelectStyle: 'group',
-// });
-
-// Ajouter le LayerSwitcher à la carte
-
-// map.addControl(layerSwitcher);
-
-// Créer la légende identique pour les deux cartes
-// const legend = new Legend({
-//   title: 'Légende',
-//   style: 'card',
-//   collapsible: true,
-//   layers: [comIsereLayer, comRhoneLayer]
-// });
-
-// const ctrLegend = new CtrLegend({
-//   legend: legend
-// });
-
-// map.addControl(ctrLegend);
-// map2.addControl(ctrLegend);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
